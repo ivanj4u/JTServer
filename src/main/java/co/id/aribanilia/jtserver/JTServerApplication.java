@@ -17,5 +17,4 @@ public class JTServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JTServerApplication.class, args);
 	}
-
 }

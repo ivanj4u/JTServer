@@ -10,7 +10,7 @@ import co.id.aribanilia.jtserver.entity.User;
  */
 public interface UserDao extends MongoRepository<User, String>{
 	
-	public User findById(String id);
+	public User findByUserId(String userId);
 	
 	public User findByName(String name);
 }

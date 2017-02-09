@@ -22,8 +22,8 @@ public class UserService {
 		return dao.findAll();
 	}
 	
-	public User getById(String id) {
-		return dao.findById(id);
+	public User getById(String userId) {
+		return dao.findByUserId(userId);
 	}
 	
 	public User getByName(String name) {
