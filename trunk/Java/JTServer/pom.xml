@@ -22,10 +22,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-        <!-- Embedded MongoDB -->
+        <!-- Embedded MongoDB 
         <dependency>
 		    <groupId>de.flapdoodle.embed</groupId>
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+		</dependency> -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version><!--$NO-MVN-MAN-VER$-->
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	<build>
