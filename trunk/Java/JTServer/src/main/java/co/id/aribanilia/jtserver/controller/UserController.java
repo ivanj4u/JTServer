@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,18 +32,21 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@ResponseBody
 	public List<User> allUser() {
 		log.info("Incoming GET /user/");
 		return service.all();
 	}
 	
 	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+	@ResponseBody
 	public User getUserById(@PathVariable String id) {
 		log.info("Incoming GET /user/" + id);
 		return service.getById(id);
 	}
 	
 	@RequestMapping(value = "/nama/{name}", method = RequestMethod.GET)
+	@ResponseBody
 	public User getUserByName(@PathVariable String name) {
 		log.info("Incoming GET /user/" + name);
 		return service.getByName(name);

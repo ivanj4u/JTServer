@@ -31,7 +31,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.5</version><!--$NO-MVN-MAN-VER$-->
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	<build>

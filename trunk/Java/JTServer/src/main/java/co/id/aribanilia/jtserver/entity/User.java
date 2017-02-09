@@ -1,7 +1,5 @@
 package co.id.aribanilia.jtserver.entity;
 
-import java.io.Serializable;
-
 import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,22 +9,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Feb 9, 2017
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User implements Serializable {
-	private static final long serialVersionUID = 8371047365577044024L;
+public class User {
 	@Id
 	public String id;
+	public String userId;
 	public String name;
 	public String password;
 	
-	public User() {
-	}
-
+	public User() {}
+	
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -43,5 +48,10 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Customer[id=%s, userId='%s', name='%s', password='%s']", id, userId, name, password);
 	}
 }
