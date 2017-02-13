@@ -23,6 +23,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+		<!-- GSON
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.6.2</version>
+		</dependency> -->
 		<!-- Embedded MongoDB
         <dependency>
             <groupId>de.flapdoodle.embed</groupId>

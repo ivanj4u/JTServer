@@ -48,13 +48,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.CREATED)
 	public void saveUser(@RequestBody User user, HttpServletResponse response) {
 		log.info("Incoming POST user/add/" + user.getName());
 		try {
-			String password = user.getPassword();
-			user.setPassword(JTSecurity.encryptToString(password));
-			service.save(user);
+			User userOld = service.getById(user.getUserId());
+			if (userOld != null) {
+				response.setStatus(HttpStatus.CONFLICT.value());
+				response.setHeader(HttpStatus.CONFLICT.getReasonPhrase(), HttpStatus.CONFLICT.value() + "");
+			} else {
+				String password = user.getPassword();
+				user.setPassword(JTSecurity.encryptToString(password));
+				service.save(user);
+				response.setStatus(HttpStatus.CREATED.value());
+			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			e.printStackTrace();
