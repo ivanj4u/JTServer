@@ -2,6 +2,7 @@ package co.id.aribanilia.jtserver.controller;
 
 import java.util.List;
 
+import co.id.j4u.main.JEUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,8 @@ public class UserController {
 	public void saveUser(@RequestBody User user) {
 		log.info("Incoming POST user/add/" + user.getName());
 		try {
+			String password = user.getPassword();
+			user.setPassword(JEUtil.encryptToString(password));
 			service.save(user);
 		} catch (Exception e) {
 			log.error(e.getMessage());

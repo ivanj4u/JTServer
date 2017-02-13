@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jab-encrypt 1.00">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jab-encrypt 1.00.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
