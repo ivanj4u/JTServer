@@ -1,23 +1,17 @@
 package co.id.aribanilia.jtserver.controller;
 
-import java.util.List;
-
-import co.id.j4u.main.JEUtil;
+import co.id.aribanilia.jtserver.entity.User;
+import co.id.aribanilia.jtserver.service.UserService;
+import co.id.aribanilia.jtserver.util.JTSecurity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import co.id.aribanilia.jtserver.entity.User;
-import co.id.aribanilia.jtserver.service.UserService;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author ivan_j4u
@@ -55,11 +49,11 @@ public class UserController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void saveUser(@RequestBody User user) {
+	public void saveUser(@RequestBody User user, HttpServletResponse response) {
 		log.info("Incoming POST user/add/" + user.getName());
 		try {
 			String password = user.getPassword();
-			user.setPassword(JEUtil.encryptToString(password));
+			user.setPassword(JTSecurity.encryptToString(password));
 			service.save(user);
 		} catch (Exception e) {
 			log.error(e.getMessage());

@@ -33,6 +33,11 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.5</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.studio</groupId>
+			<artifactId>org.apache.commons.codec</artifactId>
+			<version>1.8</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
