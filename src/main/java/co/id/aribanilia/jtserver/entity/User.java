@@ -1,8 +1,11 @@
 package co.id.aribanilia.jtserver.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @author ivan_j4u
@@ -12,8 +15,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class User {
 	@Id
 	public String id;
+
+	@NotNull @NotEmpty
 	public String userId;
+
+	@NotNull @NotEmpty
 	public String name;
+
+	@NotNull @NotEmpty
 	public String password;
 	
 	public User() {}

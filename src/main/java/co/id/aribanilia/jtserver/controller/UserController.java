@@ -18,7 +18,7 @@ import java.util.List;
  * Feb 9, 2017
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UserController {
 
 	@Autowired
@@ -26,21 +26,21 @@ public class UserController {
 	private final static Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/user")
 	@ResponseBody
 	public List<User> allUser() {
 		log.info("Incoming GET /user/");
 		return service.all();
 	}
 	
-	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+	@GetMapping("/id/{id}")
 	@ResponseBody
 	public User getUserById(@PathVariable String id) {
 		log.info("Incoming GET /user/" + id);
 		return service.getById(id);
 	}
 	
-	@RequestMapping(value = "/nama/{name}", method = RequestMethod.GET)
+	@GetMapping("/nama/{name}")
 	@ResponseBody
 	public User getUserByName(@PathVariable String name) {
 		log.info("Incoming GET /user/" + name);
@@ -54,12 +54,15 @@ public class UserController {
 			User userOld = service.getById(user.getUserId());
 			if (userOld != null) {
 				response.setStatus(HttpStatus.CONFLICT.value());
-				response.setHeader(HttpStatus.CONFLICT.getReasonPhrase(), HttpStatus.CONFLICT.value() + "");
 			} else {
 				String password = user.getPassword();
-				user.setPassword(JTSecurity.encryptToString(password));
-				service.save(user);
-				response.setStatus(HttpStatus.CREATED.value());
+				if (password != null && !password.equals("")) {
+					user.setPassword(JTSecurity.encryptToString(password));
+					service.save(user);
+					response.setStatus(HttpStatus.CREATED.value());
+				} else {
+					response.setStatus(HttpStatus.BAD_REQUEST.value());
+				}
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
